@@ -21,7 +21,10 @@ in
         baseName = baseNameOf (toString name);
       in
         ! (hasSuffix ".nix" baseName);
-      src = cleanSource ../.;
+      src = builtins.path {
+        path = cleanSource ../.;
+        name = "source";
+      };
     };
 
     nativeBuildInputs = [
